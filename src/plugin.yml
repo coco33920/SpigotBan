@@ -1,0 +1,10 @@
+name: Ban
+version: 2.2
+main: fr.coco.bungeeban.BungeeBan
+author: coco33920
+commands:
+  ban:
+  unban:
+  mute:
+  unmute:
+  banhelp:
