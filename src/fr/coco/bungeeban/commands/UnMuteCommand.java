@@ -26,6 +26,10 @@ public class UnMuteCommand implements CommandExecutor {
             if(pl == null){
                 return false;
             }else{
+                if(!MuteUtils.getInstance().isMuted(pl) && !MuteTempUtils.getInstance().isTimeMuted(pl)){
+                    player.sendMessage("§aCe joueur n'est pas mute");
+                    return false;
+                }
                 MuteUtils.getInstance().unMutePlayer(pl);
                 MuteTempUtils.getInstance().unMutePlayer(pl);
                 player.sendMessage("§aUnmute de §e" + pl.getName() + "§a envoyé !");

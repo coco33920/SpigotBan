@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 /**
  * Created by coco33910 on 22/02/2016.
@@ -53,7 +54,7 @@ public class BanUtils {
     public void unBanPlayer(OfflinePlayer player) {
 
         try {
-            sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("DELETE FROM `advancedcoins`.`ban` WHERE `ban`.`UUID` = ?");
+            sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("DELETE FROM ban WHERE UUID = ?");
 
             sts1.setString(1, player.getUniqueId().toString());
 
@@ -116,6 +117,52 @@ public class BanUtils {
 
 
     }
+
+    public boolean isBanned(UUID player) {
+        if (BungeeBan.getInstance().getDataBase().getConnection() == null) {
+            return false;
+        }
+
+        try {
+
+
+            sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("SELECT * FROM ban WHERE UUID = ?");
+
+
+            sts1.setString(1, player.toString());
+            sts1.execute();
+
+
+
+            ResultSet resultSet1 = sts1.getResultSet();
+
+
+            while (resultSet1.next()) {
+                sts1.close();
+                return true;
+            }
+            sts1.close();
+            return false;
+
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        try {
+            sts1.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+
+    }
+
 
     public String getReasonPlayerBan(Player player) {
         String str = "";

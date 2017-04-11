@@ -26,7 +26,10 @@ public class UnBanCommand implements CommandExecutor {
             if(pl == null){
                 return false;
             }else{
-
+                if(!BanUtils.getInstance().isBanned(pl.getUniqueId()) && !BanTempUtils.getInstance().isTempBanned(pl.getUniqueId())){
+                    player.sendMessage("§aCe joueur n'est pas banni");
+                    return false;
+                }
                 BanUtils.getInstance().unBanPlayer(pl);
                 player.sendMessage("§aUnban de §e" + pl.getName() + "§a envoyé !");
                 BanTempUtils.getInstance().unBanPlayer(pl);

@@ -25,7 +25,7 @@ public class MuteCommand implements CommandExecutor {
                             if (player.hasPermission("mod.mute")) {
 
                                 if (strings.length < 3) {
-                                    player.sendMessage("§cError : /mute <Player> <time in hours or permanent> <Reason>");
+                                    player.sendMessage("§cError : /mute <Player> <time or permanent> [s, m, h, d, mo, y] <Reason>");
                                 } else {
                                     Player target = Bukkit.getPlayer(strings[0]);
                                     if (target == null) {

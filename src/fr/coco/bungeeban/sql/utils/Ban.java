@@ -46,7 +46,7 @@ public class Ban {
             for(Player pla : Bukkit.getServer().getOnlinePlayers()){
                 pla.playSound(pla.getLocation(), Sound.ENDERDRAGON_GROWL, 10, 10);
             }
-            player.kickPlayer("\u00a7cVous avez \u00e9t\u00e9 banni d\u00e9finitivement du serveur \u00A72 vous pensez que vous ne devriez pas voir ce message  \u00A7bforum.advancedfight.fr \u00a7c Raison " + BanUtils.getInstance().getReasonPlayerBan(player));
+            player.kickPlayer("\u00a7cVous avez \u00e9t\u00e9 banni d\u00e9finitivement du serveur \u00A72 vous pensez que vous ne devriez pas voir ce message  \u00A7bFaite une réclamation \u00a7c Raison " + BanUtils.getInstance().getReasonPlayerBan(player));
             Bukkit.broadcastMessage("§f(§cModération§f) §e" + player.getName() + "§c a été bannis définitivement pour " + reason.replace("&", "§"));
 
 

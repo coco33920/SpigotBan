@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by coco33910 on 24/04/2016.
@@ -54,7 +55,7 @@ public class BanTempUtils {
     public void unBanPlayer(OfflinePlayer player) {
 
         try {
-            sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("DELETE FROM `advancedcoins`.`banTemp` WHERE `banTemp`.`UUID` = ?");
+            sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("DELETE FROM banTemp WHERE UUID = ?");
 
             sts1.setString(1, player.getUniqueId().toString());
 
@@ -108,6 +109,51 @@ public class BanTempUtils {
 
 
     }
+    public boolean isTempBanned(UUID player) {
+        if (BungeeBan.getInstance().getDataBase().getConnection() == null) {
+            return false;
+        }
+
+        try {
+
+
+            sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("SELECT * FROM banTemp WHERE UUID = ?");
+
+
+            sts1.setString(1, player.toString());
+            sts1.execute();
+
+
+
+            ResultSet resultSet1 = sts1.getResultSet();
+
+
+            while (resultSet1.next()) {
+                sts1.close();
+                return true;
+            }
+            sts1.close();
+            return false;
+
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        try {
+            sts1.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+
+    }
+
 
     public String getReasonPlayerBan(Player player) {
         String str = "";

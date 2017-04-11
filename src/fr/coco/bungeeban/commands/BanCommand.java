@@ -29,7 +29,7 @@ public class BanCommand implements CommandExecutor {
             if (player.hasPermission("mod.ban")) {
 
                 if (strings.length < 3) {
-                    player.sendMessage("§cError : /ban <Player> <time in hours or permanent> <Reason>");
+                    player.sendMessage("§cError : /ban <Player> <time or permanent> [s, m, h, d, mo, y] <Reason>");
                 } else {
                     Player target = Bukkit.getPlayer(strings[0]);
                     if (target == null) {

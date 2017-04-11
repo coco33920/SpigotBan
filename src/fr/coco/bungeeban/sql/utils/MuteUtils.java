@@ -53,7 +53,7 @@ public class MuteUtils {
         public void unMutePlayer(OfflinePlayer player) {
 
             try {
-                sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("DELETE FROM `advancedcoins`.`mute` WHERE `mute`.`UUID` = ?");
+                sts1 = BungeeBan.getInstance().getDataBase().getConnection().prepareStatement("DELETE FROM mute WHERE UUID = ?");
 
                 sts1.setString(1, player.getUniqueId().toString());
 
